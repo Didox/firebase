@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+</head>
+<body>
+	<div id="dd">
+	</div>
+	<script>
+		var myFirebaseRef = new Firebase("https://scorching-fire-3573.firebaseio.com/");
+
+		console.log(myFirebaseRef);
+
+		myFirebaseRef.child("version").on("value", function(snapshot) {
+		  console.log(snapshot.val());
+
+		  document.getElementById('dd').innerHTML = snapshot.val().message;
+		});
+
+
+		function writeNode(){
+			var myFirebaseRef = new Firebase("https://scorching-fire-3573.firebaseio.com/").child("teste");
+			myFirebaseRef.set({
+			  title: "Hello World!",
+			  author: "Firebase",
+			  location: {
+			    city: "San Francisco",
+			    state: "California",
+			    zip: 94103
+			  }
+			});
+		}
+
+
+	</script>
+
+	<input type="button" onclick="writeNode()" value="ok">
+</body>
+</html>
