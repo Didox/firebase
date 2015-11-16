@@ -21,19 +21,28 @@
 		function writeNode(){
 			var myFirebaseRef = new Firebase("https://scorching-fire-3573.firebaseio.com/").child("teste");
 			myFirebaseRef.set({
-			  title: "Hello World!",
+			  title: "Hello World didox!",
 			  author: "Firebase",
 			  location: {
-			    city: "San Francisco",
-			    state: "California",
+			    city: "Brazil",
+			    state: "São Paulo",
 			    zip: 94103
 			  }
 			});
 		}
 
+		function saveMail(){
+			var email = document.getElementById("email");
+			var myFirebaseRef = new Firebase("https://scorching-fire-3573.firebaseio.com/emails").child(email.value.replace(/@/, "").replace(".", ""));
+			myFirebaseRef.set({ email: email.value });
+			alert("registro salvo");
+			email.value = "";
+		}
+
 
 	</script>
 
-	<input type="button" onclick="writeNode()" value="ok">
+	Email: <input type="text" id="email" >
+	<input type="button" onclick="saveMail()" value="Salvar">
 </body>
 </html>
